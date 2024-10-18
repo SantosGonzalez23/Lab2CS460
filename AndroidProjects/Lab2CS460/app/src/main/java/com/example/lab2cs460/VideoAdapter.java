@@ -17,11 +17,22 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     private List<VideoItem> videoItems;
 
+    /**
+     * Constructor for VideoAdapter.
+     *
+     * @param videoItem List of VideoItem objects to be displayed in the RecyclerView.
+     */
     public VideoAdapter(List<VideoItem> videoItem) {
         this.videoItems = videoItem;
     }
 
-
+    /**
+     * Creates a new VideoViewHolder when the RecyclerView needs a new ViewHolder to represent an item.
+     *
+     * @param parent   The ViewGroup into which the new View will be added.
+     * @param viewType The view type of the new View.
+     * @return A new instance of VideoViewHolder.
+     */
     @NonNull
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,18 +41,31 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         );
     }
 
+    /**
+     * Binds the data from the videoItems list to the provided ViewHolder.
+     *
+     * @param holder   The ViewHolder which should be updated to represent the content of the item at the given position.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         holder.setVideoData(videoItems.get(position));
 
     }
-
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in the data set.
+     */
     @Override
     public int getItemCount() {
         return videoItems.size();
     }
 
 
+    /**
+     * ViewHolder class for holding the views for each video item.
+     */
     static class VideoViewHolder extends RecyclerView.ViewHolder{
 
         TextView textVideoTitle1, textVideoDescription1, textVideoID1;
@@ -49,7 +73,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         VideoView videoView;
 
         ProgressBar progressBar;
-
+        /**
+         * Constructor for VideoViewHolder.
+         *
+         * @param itemView The view to be held by this ViewHolder.
+         */
             public VideoViewHolder(@NonNull View itemView) {
                 super(itemView);
                 videoView = itemView.findViewById(R.id.videoView);
@@ -59,7 +87,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
                 progressBar = itemView.findViewById(R.id.videoProgressBar);
             }
 
-
+        /**
+         * Sets the video data to the views.
+         *
+         * @param videoItem The VideoItem object containing video data.
+         */
             void setVideoData(VideoItem videoItem){
                 textVideoTitle1.setText(videoItem.videoTitle);
                 textVideoDescription1.setText(videoItem.videoDescription);
